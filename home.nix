@@ -9,6 +9,7 @@
   home.packages = [
     # Basic
     pkgs.curl
+    pkgs.gnumake
     pkgs.cmake
     pkgs.gcc
     pkgs.gdb
