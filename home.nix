@@ -40,6 +40,45 @@
     ".config/nvim".source = ./dotfiles/astronvim;
   };
 
+programs.starship = {
+    enable = true;
+    enableZshIntegration = true;
+    
+    settings = {
+      add_newline = false;
+
+      format = "$username$hostname$directory$git_branch$git_status$nix_shell$character";
+
+      character = {
+        success_symbol = "[>](bold green)";
+        error_symbol = "[>](bold red)";
+      };
+
+      git_status = {
+
+        untracked = "?\${count}";   
+        modified = "!\${count}";
+        staged = "+\${count}";   
+
+        ahead = "⇡\${count}";       
+        behind = "⇣\${count}";      
+        conflicted = "=\${count}";  
+        deleted = "-\${count}";     
+        renamed = "»\${count}";     
+        stashed = "$\${count}";     
+
+        format = "([\\[$branch ]($style)[$all_status$ahead_behind\\]]($style) )";
+        style = "green bold"; 
+      };
+      
+      directory = {
+        truncation_length = 3;
+        truncate_to_repo = true;
+        style = "bold blue";
+      };
+    };
+  };
+
   programs.zsh = {
     enable = true;
 
@@ -59,9 +98,6 @@
 
       source $ZSH/oh-my-zsh.sh
 
-      source ~/powerlevel10k/powerlevel10k.zsh-theme
-
-      [[ ! -f ~/.config/home-manager/dotfiles/zsh/p10k.zsh ]] || source ~/.config/home-manager/dotfiles/zsh/p10k.zsh
     '';
   };
 
