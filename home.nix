@@ -39,9 +39,28 @@
     ".config/nvim".source = ./dotfiles/astronvim;
   };
 
-  programs.zsh.initContent = {
+  programs.zsh = {
     enable = true;
-    initExtra = ''
+
+    shellAliases = {
+      ll = "ls -l";
+      la = "ls -la";
+      ".." = "cd ..";
+      hms = "home-manager switch";
+      hmconf = "nvim ~/.config/home-manager/home.nix";
+    };
+
+
+    initContent = ''
+      export ZSH="$HOME/.oh-my-zsh"
+
+      plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
+
+      source $ZSH/oh-my-zsh.sh
+
+      source ~/powerlevel10k/powerlevel10k.zsh-theme
+
+      [[ ! -f ~/.config/home-manager/dotfiles/zsh/p10k.zsh ]] || source ~/.config/home-manager/dotfiles/zsh/p10k.zsh
     '';
   };
 
