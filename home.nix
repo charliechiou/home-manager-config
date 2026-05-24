@@ -6,6 +6,8 @@
 
   home.stateVersion = "25.11";
 
+  nixpkgs.config.allowUnfree = true;
+
   home.packages = [
     # Basic
     pkgs.curl
@@ -15,8 +17,15 @@
     pkgs.gdb
     pkgs.git
     pkgs.htop
+    pkgs.nvtopPackages.full
+    pkgs.bc
+    pkgs.tig
 
-    # Development
+    # Mail
+    pkgs.neomutt
+    pkgs.public-inbox
+
+    # Developmenta
     pkgs.neovim
     pkgs.ripgrep
     pkgs.fd
@@ -24,6 +33,12 @@
     pkgs.fastfetch
     pkgs.bat
     pkgs.nodejs
+
+    # Application
+    pkgs.uxplay
+
+    # Blog
+    pkgs.hugo
 
   ];
 
