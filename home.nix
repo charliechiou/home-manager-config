@@ -103,6 +103,7 @@ programs.starship = {
       ".." = "cd ..";
       hms = "home-manager switch";
       hmconf = "nvim ~/.config/home-manager/home.nix";
+
     };
 
 
@@ -113,6 +114,18 @@ programs.starship = {
 
       source $ZSH/oh-my-zsh.sh
 
+      hnew(){
+        if [ -z "$1" ]; then
+          echo "No article name :("
+          return 1
+        fi
+        hugo new posts/"$1"/index.md
+        if [ -f "content/posts/$1/index.md" ]; then
+          nvim "content/posts/$1/index.md"
+        else
+          echo "Cannot find the file"
+        fi
+      }
     '';
   };
 
